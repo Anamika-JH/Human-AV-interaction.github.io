@@ -28,6 +28,8 @@ The project consists of multiple layers:
 Resources can be accessed at: [Resources](https://drive.google.com/drive/folders/18T3t87dYajVvqO8WMyi9NXHBhyZbazkO?usp=sharing)  
 Please **copy the resources folder inside the `Model` folder** in the repository.
 
+🎥 Video Demonstration
+For a video demonstration of the project, [visit the webpage here](https://anamika-jh.github.io/Human-AV-interaction.github.io/).
 
 ## Acknowledgments
 Parts of this project page were adopted from the [Nerfies](https://nerfies.github.io/) page.
