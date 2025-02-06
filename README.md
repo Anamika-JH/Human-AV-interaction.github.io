@@ -25,7 +25,7 @@ The project consists of multiple layers:
 - The system evaluates how humans and AVs coordinate in crossing scenarios.
 
 ## Resources
-Resources can be accessed at: [Google Drive Link](https://drive.google.com/drive/folders/18T3t87dYajVvqO8WMyi9NXHBhyZbazkO?usp=sharing)  
+Resources can be accessed at: [Resources](https://drive.google.com/drive/folders/18T3t87dYajVvqO8WMyi9NXHBhyZbazkO?usp=sharing)  
 Please **copy the resources folder inside the `Model` folder** in the repository.
 
 
