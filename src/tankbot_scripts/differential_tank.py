@@ -5,6 +5,7 @@ from std_msgs.msg import Int32, Bool
 import RPi.GPIO as GPIO
 import time
 from math import pi
+import socket
 
 leftEn = 13         #   Blue
 rightEn = 12        #   Brown
@@ -24,6 +25,7 @@ wheel_radius = wheel_diameter/2
 circumference_of_wheel = 2 * pi * wheel_radius
 max_speed = (circumference_of_wheel*motor_rpm)/60   #   m/sec
 max_ang = (max_speed*2)/wheel_separation            #   rad/sec
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
@@ -37,6 +39,11 @@ pwmL = GPIO.PWM(leftEn, 100)
 pwmL.start(0)
 pwmR = GPIO.PWM(rightEn, 100)
 pwmR.start(0)
+
+# UDP Setup
+UDP_IP = "127.0.0.1"  # Change to target IP if needed
+UDP_PORT = 5005
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     
 def wheel_vel_executer(left_speed, right_speed):
     global max_pwm_val
@@ -74,18 +81,17 @@ def wheel_vel_executer(left_speed, right_speed):
         rdir_pub.publish(0)
     
 def callback(data):
-
-    # refer this for understanding the formula 
-    # http://www.cs.columbia.edu/~allen/F17/NOTES/icckinematics.pdf
-    
     global wheel_radius
     global wheel_separation
-   # print("something came")
     
     linear_vel = data.linear.x                  # Linear Velocity of Robot
     angular_vel = data.angular.z                # Angular Velocity of Robot
-   # print(str(linear_vel)+"\t"+str(angular_vel))
-    print("Linear velocity",linear_vel, "\n","Angular velocity",angular_vel, "\n")
+    
+    print("Linear velocity", linear_vel, "\n", "Angular velocity", angular_vel, "\n")
+    
+    # Send UDP message
+    message = f"Linear: {linear_vel}, Angular: {angular_vel}"
+    sock.sendto(message.encode(), (UDP_IP, UDP_PORT))
     
     VrplusVl  = 2 * linear_vel
     VrminusVl = angular_vel * wheel_separation
@@ -93,13 +99,10 @@ def callback(data):
     right_vel = ( VrplusVl + VrminusVl ) / 2      # right wheel velocity along the ground
     left_vel  = VrplusVl - right_vel              # left wheel velocity along the ground
     
-    #print (str(left_vel)+"\t"+str(right_vel))
-    print("Right velocity:", right_vel, "\n", "Left_velocity:", 
-	left_vel, "\n")    
+    print("Right velocity:", right_vel, "\n", "Left_velocity:", left_vel, "\n")    
     wheel_vel_executer(left_vel, right_vel)
         
 def listener():
-    
     global lpwm_pub
     global rpwm_pub
     global ldir_pub
@@ -111,7 +114,7 @@ def listener():
     rpwm_pub = rospy.Publisher('rpwm', Int32, queue_size = 10)
     ldir_pub = rospy.Publisher('ldir', Bool, queue_size = 10)
     rdir_pub = rospy.Publisher('rdir', Bool, queue_size = 10)
-    print("Subscibed to cmd_vel")
+    print("Subscribed to cmd_vel")
     rospy.spin()
 
 if __name__== '__main__':
