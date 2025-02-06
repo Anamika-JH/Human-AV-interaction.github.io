@@ -1,5 +1,29 @@
-# Academic Project Page Template
-This is an academic paper project page template.
+# Human-AV Interaction
+🚀 **ROS Noetic-based TurtleBot | Lane Detection | Stanley Controller | XR Simulation**
+
+## Project Overview
+This project explores human-autonomous vehicle (AV) interaction using a **TurtleBot running on ROS Noetic**. The system integrates **lane detection-based trajectory tracking**, **Stanley controller-based navigation**, and **UDP communication with a Unity-based XR environment**. A pedestrian wearing an **Oculus headset** interacts with the virtual AV, which mirrors real-time robot movements.
+
+## System Architecture
+The project consists of multiple layers:
+
+### **Robot Control Layer (ROS Noetic)**
+- The TurtleBot runs ROS Noetic.
+- It follows a trajectory using **lane detection and a Stanley controller**.
+- Wheel odometry data is extracted and sent via UDP.
+
+### **Perception Layer**
+- A camera mounted on the TurtleBot detects lanes.
+- A **two-lane detection system** helps in trajectory tracking.
+
+### **Simulation Layer (Unity XR)**
+- A Unity-based XR environment receives wheel odometry via **UDP**.
+- The AV moves based on real-time data from the robot.
+
+### **Human Interaction Layer**
+- A pedestrian using an **Oculus headset** interacts with the AV.
+- The system evaluates how humans and AVs coordinate in crossing scenarios.
+
 
 
 ## Acknowledgments
