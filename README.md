@@ -1,4 +1,11 @@
 # Human-AV Interaction
+![Python](https://img.shields.io/badge/Python-3.x-blue?style=flat-square&logo=python)  
+![ROS Noetic](https://img.shields.io/badge/ROS%20Noetic-%230A66C2.svg?&style=flat-square&logo=ros&logoColor=white)  
+![OpenCV](https://img.shields.io/badge/OpenCV-4.x-red?style=flat-square&logo=opencv)  
+![Unity](https://img.shields.io/badge/Unity-XR%20Simulation-black?style=flat-square&logo=unity)  
+![UDP Communication](https://img.shields.io/badge/UDP-Data%20Streaming-brightgreen?style=flat-square)
+![License](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey?style=flat-square)  
+
 🚀 **ROS Noetic-based TurtleBot | Lane Detection | Stanley Controller | XR Simulation**
 
 ## Project Overview
